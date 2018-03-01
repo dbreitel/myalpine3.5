@@ -1,0 +1,12 @@
+FROM alpine:3.5
+MAINTAINER diego.breitel@aquasec.com
+RUN apk update
+RUN apk add --no-cache ca-certificates && update-ca-certificates
+RUN apk add bash
+RUN apk add bash==4.3.46-r5
+RUN apk add openssl
+RUN apk add ruby
+ADD https://get.aquasec.com/microscanner .
+RUN chmod +x microscanner
+RUN ./microscanner <TOKEN>
+CMD "top"
